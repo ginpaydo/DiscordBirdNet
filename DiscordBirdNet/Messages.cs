@@ -10,6 +10,7 @@ using Discord.Audio;
 using Discord.Commands;
 using Discord.WebSocket;
 using System.Threading;
+using System.Numerics;
 
 namespace DiscordBirdNet
 {
@@ -174,7 +175,7 @@ namespace DiscordBirdNet
         /// </summary>
         /// <param name="budget"></param>
         /// <returns>買い物リスト</returns>
-        private string ShowBuyList(int budget)
+        private string ShowBuyList(BigInteger budget)
         {
             var list = ToricchiStatus.appData.Facilities.Values.Where(f => f.CurrentPrice < budget);
 
@@ -278,7 +279,7 @@ namespace DiscordBirdNet
         public async Task BuyItem()
         {
             string Messages = "な、何でお前と買い物しなきゃならねぇんだよ……:angry:";
-            int budget = ToricchiStatus.Money;
+            var budget = ToricchiStatus.Money;
             if (IsLike(SocketUserMessage.Author.Username, 5))
             {
                 if (IsLike(SocketUserMessage.Author.Username, 10))
@@ -502,7 +503,7 @@ namespace DiscordBirdNet
             {
                 ToricchiStatus.Mp -= 100;
                 Messages = $"「天よ地よ大いなる神よ\n　生きとし生けるもの皆終焉の雄叫びを上げ\n　舞い狂う死神達の宴を始めよ\n　冥界より召喚されし暗黒の扉今開かれん\n　*デジタルメガフレアーーーーーッ！！*」\n\n{ToricchiStatus.Name}の指先から熱線が放たれ、Zaifに深刻なダメージを与えた！！\nZaifはGOXしました。\n{ToricchiStatus.Name}は{ToricchiStatus.Income * 1000}円獲得しました。";
-                ToricchiStatus.Money += ToricchiStatus.Income * 1000;
+                ToricchiStatus.Money += ToricchiStatus.Income * 500;
             }
             else
             {
